@@ -1,0 +1,50 @@
+Cmais\ModelBundle\Entity\CategoryAsset:
+    type: entity
+    table: category_asset
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    manyToOne:
+        category:
+            targetEntity: Category
+            inversedBy: assets
+        asset:
+            targetEntity: Asset
+            inversedBy: categories
+
+    fields:
+        position:
+            type: integer
+            gedmo:
+                - sortablePosition
+            nullable: true
+            options:
+                default: 0
+        is_active:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        is_visible:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        created_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+
+    indexes:
+        is_active_index:
+            columns: [ is_active ]
+        is_visible_index:
+            columns: [ is_visible ]

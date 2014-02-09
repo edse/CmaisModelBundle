@@ -1,0 +1,61 @@
+Cmais\ModelBundle\Entity\Category:
+    type: entity
+    table: category
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    oneToMany:
+        assets:
+            targetEntity: CategoryAsset
+            mappedBy: category
+
+
+#    oneToMany:
+#        assets:
+#            targetEntity: CategoryAsset
+#            mappedBy: asset
+#        categories:
+#            targetEntity: CategoryAsset
+#            mappedBy: category
+
+    fields:
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                separator: -
+                fields:
+                    - title
+        title:
+            type: string
+            length: 255
+            unique: true
+            nullable: false
+        description:
+            type: string
+            length: 510
+            nullable: true
+        is_active:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        created_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    indexes:
+        slug_index:
+            columns: [ slug ]
+        is_active_index:
+            columns: [ is_active ]
+

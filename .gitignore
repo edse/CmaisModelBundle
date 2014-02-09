@@ -1,0 +1,7 @@
+.project
+web/bundles/
+app/bootstrap*
+app/cache/*
+app/logs/*
+vendor/
+app/config/parameters.yml

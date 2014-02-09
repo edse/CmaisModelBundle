@@ -1,0 +1,100 @@
+Cmais\ModelBundle\Entity\Section:
+    type: entity
+    table: section
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    oneToMany:
+        assets:
+            targetEntity: SectionAsset
+            mappedBy: section
+        sections:
+            targetEntity: Section
+            mappedBy: parent
+
+    manyToOne:
+        parent:
+            targetEntity: Section
+            inversedBy: sections
+        site:
+            targetEntity: Site
+            inversedBy: sections
+
+    fields:
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                separator: -
+                fields:
+                    - title
+        title:
+            type: string
+            length: 255
+            nullable: false
+        description:
+            type: string
+            length: 510
+            nullable: true
+        position:
+            type: integer
+            gedmo:
+                - sortablePosition
+            nullable: true
+            options:
+                default: 0
+        url:
+            type: string
+            length: 255
+            nullable: true
+        keywords:
+            type: string
+            length: 255
+            nullable: true
+        contact_email:
+            type: string
+            length: 255
+            nullable: true
+        is_homepage:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        is_active:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        is_visible:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        date_start:
+            type: datetime
+            nullable: true
+        date_end:
+            type: datetime
+            nullable: true
+        created_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    indexes:
+        slug_index:
+            columns: [ slug ]
+        is_active_index:
+            columns: [ is_active ]
+        is_visible_index:
+            columns: [ is_visible ]
+        is_homepage_index:
+            columns: [ is_homepage ]

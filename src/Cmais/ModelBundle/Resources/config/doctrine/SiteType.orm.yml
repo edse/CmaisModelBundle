@@ -1,0 +1,67 @@
+Cmais\ModelBundle\Entity\SiteType:
+    type: entity
+    table: site_type
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    oneToMany:
+        sites:
+            targetEntity: Site
+            mappedBy: site_type
+
+    fields:
+        slug:
+            type: string
+            length: 255
+            gedmo:
+                slug:
+                separator: -
+                fields:
+                    - title
+        title:
+            type: string
+            length: 255
+            unique: true
+            nullable: false
+        description:
+            type: string
+            length: 510
+            nullable: true
+        is_active:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        is_visible:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        created_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update
+    indexes:
+        slug_index:
+            columns: [ slug ]
+        is_active_index:
+            columns: [ is_active ]
+
+#    oneToMany:
+#        Sites:
+#            targetEntity: Site
+#            mappedBy: site_type
+
+
+#    oneToMany:
+#        Assets:
+#            targetEntity: Asset
+#            mappedBy: AssetType
