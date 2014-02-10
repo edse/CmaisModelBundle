@@ -1,56 +1,51 @@
-Cmais\ModelBundle\Entity\AssetType:
+Cmais\ModelBundle\Entity\VideoDropbox:
     type: entity
-    table: asset_type
+    table: video_dropbox
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
 
-    oneToMany:
-        assets:
-            targetEntity: Asset
-            mappedBy: asset_type
+    manyToOne:
+        asset_video:
+            targetEntity: AssetVideo
+            inversedBy: video_dropboxes
+        asset_video_gallery:
+            targetEntity: AssetVideoGallery
+            inversedBy: video_dropboxes
 
     fields:
-        slug:
-            type: string
-            length: 255
-            gedmo:
-                slug:
-                separator: -
-                fields:
-                    - title
-        title:
-            type: string
-            length: 255
-            unique: true
-            nullable: false
-        description:
-            type: string
-            length: 510
-            nullable: true
-        model:
+        youtube_id:
             type: string
             length: 255
             nullable: true
-        position:
-            type: integer
-            gedmo:
-                - sortablePosition
+        action:
+            type: string
+            length: 255
             nullable: true
-            options:
-                default: 0
-        is_active:
+        folder:
+            type: string
+            length: 255
+            nullable: true
+        status:
+            type: string
+            length: 255
+            nullable: true
+        message:
+            type: string
+            length: 255
+            nullable: true
+        is_waiting:
             type: boolean
             nullable: true
             options:
                 default: 0
-        is_visible:
+        is_pending:
             type: boolean
             nullable: true
             options:
                 default: 0
-        is_uploadable:
+        is_complete:
             type: boolean
             nullable: true
             options:
@@ -66,9 +61,9 @@ Cmais\ModelBundle\Entity\AssetType:
                 timestampable:
                     on: update
     indexes:
-        slug_index:
-            columns: [ slug ]
-        is_active_index:
-            columns: [ is_active ]
-        is_uploadable_index:
-            columns: [ is_uploadable ]
+        is_waiting_index:
+            columns: [ is_waiting ]
+        is_pending_index:
+            columns: [ is_pending ]
+        is_complete_index:
+            columns: [ is_complete ]

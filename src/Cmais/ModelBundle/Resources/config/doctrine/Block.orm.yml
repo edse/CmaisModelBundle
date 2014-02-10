@@ -1,31 +1,22 @@
-Cmais\ModelBundle\Entity\Section:
+Cmais\ModelBundle\Entity\Block:
     type: entity
-    table: section
+    table: block
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
 
     oneToMany:
-        assets:
-            targetEntity: SectionAsset
-            mappedBy: section
-        sections:
-            targetEntity: Section
-            mappedBy: parent
-        blocks:
-            targetEntity: Block
-            mappedBy: section
+        displays:
+            targetEntity: Display
+            mappedBy: block
         logs:
             targetEntity: Log
-            mappedBy: section
+            mappedBy: block
     manyToOne:
-        parent:
+        section:
             targetEntity: Section
-            inversedBy: sections
-        site:
-            targetEntity: Site
-            inversedBy: sections
+            inversedBy: blocks
 
     fields:
         slug:
@@ -44,6 +35,20 @@ Cmais\ModelBundle\Entity\Section:
             type: string
             length: 510
             nullable: true
+        query:
+            type: string
+            length: 510
+            nullable: true
+        items:
+            type: integer
+            nullable: true
+            options:
+                default: 0
+        items_order:
+            type: integer
+            nullable: true
+            options:
+                default: 0
         position:
             type: integer
             gedmo:
@@ -51,19 +56,12 @@ Cmais\ModelBundle\Entity\Section:
             nullable: true
             options:
                 default: 0
-        url:
-            type: string
-            length: 255
+        is_random:
+            type: boolean
             nullable: true
-        keywords:
-            type: string
-            length: 255
-            nullable: true
-        contact_email:
-            type: string
-            length: 255
-            nullable: true
-        is_homepage:
+            options:
+                default: 0
+        is_automatic:
             type: boolean
             nullable: true
             options:
@@ -101,5 +99,7 @@ Cmais\ModelBundle\Entity\Section:
             columns: [ is_active ]
         is_visible_index:
             columns: [ is_visible ]
-        is_homepage_index:
-            columns: [ is_homepage ]
+        is_random_index:
+            columns: [ is_random ]
+        is_automatic_index:
+            columns: [ is_automatic ]

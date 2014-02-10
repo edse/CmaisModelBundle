@@ -1,15 +1,15 @@
-Cmais\ModelBundle\Entity\Category:
+Cmais\ModelBundle\Entity\RelatedAssetType:
     type: entity
-    table: category
+    table: related_asset_type
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
 
     oneToMany:
-        assets:
-            targetEntity: CategoryAsset
-            mappedBy: category
+        related_assets:
+            targetEntity: RelatedAsset
+            mappedBy: related_asset_type
 
     fields:
         slug:
@@ -34,6 +34,11 @@ Cmais\ModelBundle\Entity\Category:
             nullable: true
             options:
                 default: 0
+        is_visible:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
         created_at:
             type: datetime
             gedmo:
@@ -44,10 +49,8 @@ Cmais\ModelBundle\Entity\Category:
             gedmo:
                 timestampable:
                     on: update
-
     indexes:
         slug_index:
             columns: [ slug ]
         is_active_index:
             columns: [ is_active ]
-

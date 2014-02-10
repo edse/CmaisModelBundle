@@ -1,0 +1,49 @@
+Cmais\ModelBundle\Entity\AssetFile:
+    type: entity
+    table: asset_file
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    oneToOne:
+        asset:
+            targetEntity: Asset
+            inversedBy: asset_file
+            joinColumn:
+                name: asset_id
+                referencedColumnName: id
+
+    fields:
+        file:
+            type: string
+            length: 255
+            nullable: true
+        original_file:
+            type: string
+            length: 255
+            nullable: true
+        original_file_size:
+            type: string
+            length: 255
+            nullable: true
+        extension:
+            type: string
+            length: 255
+            nullable: true
+        headline:
+            type: string
+            length: 255
+            nullable: true
+        genre:
+            type: string
+            length: 255
+            nullable: true
+        source:
+            type: string
+            length: 255
+            nullable: true
+        author:
+            type: string
+            length: 255
+            nullable: true

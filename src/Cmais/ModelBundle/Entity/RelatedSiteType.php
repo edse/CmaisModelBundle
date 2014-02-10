@@ -5,9 +5,9 @@ namespace Cmais\ModelBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * AssetType
+ * RelatedSiteType
  */
-class AssetType
+class RelatedSiteType
 {
     /**
      * @var integer
@@ -30,11 +30,6 @@ class AssetType
     private $description;
 
     /**
-     * @var string
-     */
-    private $model;
-
-    /**
      * @var boolean
      */
     private $is_active;
@@ -43,11 +38,6 @@ class AssetType
      * @var boolean
      */
     private $is_visible;
-
-    /**
-     * @var boolean
-     */
-    private $is_uploadable;
 
     /**
      * @var \DateTime
@@ -62,14 +52,14 @@ class AssetType
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $assets;
+    private $related_sites;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->assets = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->related_sites = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -86,7 +76,7 @@ class AssetType
      * Set slug
      *
      * @param string $slug
-     * @return AssetType
+     * @return RelatedSiteType
      */
     public function setSlug($slug)
     {
@@ -109,7 +99,7 @@ class AssetType
      * Set title
      *
      * @param string $title
-     * @return AssetType
+     * @return RelatedSiteType
      */
     public function setTitle($title)
     {
@@ -132,7 +122,7 @@ class AssetType
      * Set description
      *
      * @param string $description
-     * @return AssetType
+     * @return RelatedSiteType
      */
     public function setDescription($description)
     {
@@ -152,33 +142,10 @@ class AssetType
     }
 
     /**
-     * Set model
-     *
-     * @param string $model
-     * @return AssetType
-     */
-    public function setModel($model)
-    {
-        $this->model = $model;
-
-        return $this;
-    }
-
-    /**
-     * Get model
-     *
-     * @return string 
-     */
-    public function getModel()
-    {
-        return $this->model;
-    }
-
-    /**
      * Set is_active
      *
      * @param boolean $isActive
-     * @return AssetType
+     * @return RelatedSiteType
      */
     public function setIsActive($isActive)
     {
@@ -201,7 +168,7 @@ class AssetType
      * Set is_visible
      *
      * @param boolean $isVisible
-     * @return AssetType
+     * @return RelatedSiteType
      */
     public function setIsVisible($isVisible)
     {
@@ -221,33 +188,10 @@ class AssetType
     }
 
     /**
-     * Set is_uploadable
-     *
-     * @param boolean $isUploadable
-     * @return AssetType
-     */
-    public function setIsUploadable($isUploadable)
-    {
-        $this->is_uploadable = $isUploadable;
-
-        return $this;
-    }
-
-    /**
-     * Get is_uploadable
-     *
-     * @return boolean 
-     */
-    public function getIsUploadable()
-    {
-        return $this->is_uploadable;
-    }
-
-    /**
      * Set created_at
      *
      * @param \DateTime $createdAt
-     * @return AssetType
+     * @return RelatedSiteType
      */
     public function setCreatedAt($createdAt)
     {
@@ -270,7 +214,7 @@ class AssetType
      * Set updated_at
      *
      * @param \DateTime $updatedAt
-     * @return AssetType
+     * @return RelatedSiteType
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -290,63 +234,35 @@ class AssetType
     }
 
     /**
-     * Add assets
+     * Add related_sites
      *
-     * @param \Cmais\ModelBundle\Entity\Asset $assets
-     * @return AssetType
+     * @param \Cmais\ModelBundle\Entity\RelatedSite $relatedSites
+     * @return RelatedSiteType
      */
-    public function addAsset(\Cmais\ModelBundle\Entity\Asset $assets)
+    public function addRelatedSite(\Cmais\ModelBundle\Entity\RelatedSite $relatedSites)
     {
-        $this->assets[] = $assets;
+        $this->related_sites[] = $relatedSites;
 
         return $this;
     }
 
     /**
-     * Remove assets
+     * Remove related_sites
      *
-     * @param \Cmais\ModelBundle\Entity\Asset $assets
+     * @param \Cmais\ModelBundle\Entity\RelatedSite $relatedSites
      */
-    public function removeAsset(\Cmais\ModelBundle\Entity\Asset $assets)
+    public function removeRelatedSite(\Cmais\ModelBundle\Entity\RelatedSite $relatedSites)
     {
-        $this->assets->removeElement($assets);
+        $this->related_sites->removeElement($relatedSites);
     }
 
     /**
-     * Get assets
+     * Get related_sites
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getAssets()
+    public function getRelatedSites()
     {
-        return $this->assets;
-    }
-    /**
-     * @var integer
-     */
-    private $position;
-
-
-    /**
-     * Set position
-     *
-     * @param integer $position
-     * @return AssetType
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    /**
-     * Get position
-     *
-     * @return integer 
-     */
-    public function getPosition()
-    {
-        return $this->position;
+        return $this->related_sites;
     }
 }

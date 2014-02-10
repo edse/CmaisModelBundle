@@ -1,0 +1,77 @@
+Cmais\ModelBundle\Entity\AssetSchedule:
+    type: entity
+    table: asset_schedule
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    oneToOne:
+        asset:
+            targetEntity: Asset
+            inversedBy: asset_schedule
+            joinColumn: 
+                name: asset_id
+                referencedColumnName: id
+    manyToOne:
+        channel:
+            targetEntity: Site
+            inversedBy: channel_schedules
+        program:
+            targetEntity: Site
+            inversedBy: program_schedules
+
+    fields:
+        start_date:
+            type: datetime
+            nullable: false
+        end_date:
+            type: datetime
+            nullable: false
+        headline:
+            type: string
+            length: 255
+            nullable: true
+        short_headline:
+            type: string
+            length: 255
+            nullable: true
+        long_headline:
+            type: string
+            length: 255
+            nullable: true
+        html:
+            type: blob
+            nullable: true
+        source:
+            type: string
+            length: 255
+            nullable: true
+        author:
+            type: string
+            length: 255
+            nullable: true
+
+        is_active:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        is_important:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+        is_live:
+            type: boolean
+            nullable: true
+            options:
+                default: 0
+
+    indexes:
+        is_active_index:
+            columns: [ is_active ]
+        is_important_index:
+            columns: [ is_important ]
+        is_live_index:
+            columns: [ is_live ]

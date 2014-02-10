@@ -5,9 +5,9 @@ namespace Cmais\ModelBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Section
+ * Block
  */
-class Section
+class Block
 {
     /**
      * @var integer
@@ -30,29 +30,34 @@ class Section
     private $description;
 
     /**
+     * @var string
+     */
+    private $query;
+
+    /**
+     * @var integer
+     */
+    private $items;
+
+    /**
+     * @var integer
+     */
+    private $items_order;
+
+    /**
      * @var integer
      */
     private $position;
 
     /**
-     * @var string
+     * @var boolean
      */
-    private $url;
-
-    /**
-     * @var string
-     */
-    private $keywords;
-
-    /**
-     * @var string
-     */
-    private $contact_email;
+    private $is_random;
 
     /**
      * @var boolean
      */
-    private $is_homepage;
+    private $is_automatic;
 
     /**
      * @var boolean
@@ -85,33 +90,10 @@ class Section
     private $updated_at;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $assets;
-
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $sections;
-
-    /**
      * @var \Cmais\ModelBundle\Entity\Section
      */
-    private $parent;
+    private $section;
 
-    /**
-     * @var \Cmais\ModelBundle\Entity\Site
-     */
-    private $site;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->assets = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->sections = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -127,7 +109,7 @@ class Section
      * Set slug
      *
      * @param string $slug
-     * @return Section
+     * @return Block
      */
     public function setSlug($slug)
     {
@@ -150,7 +132,7 @@ class Section
      * Set title
      *
      * @param string $title
-     * @return Section
+     * @return Block
      */
     public function setTitle($title)
     {
@@ -173,7 +155,7 @@ class Section
      * Set description
      *
      * @param string $description
-     * @return Section
+     * @return Block
      */
     public function setDescription($description)
     {
@@ -193,10 +175,79 @@ class Section
     }
 
     /**
+     * Set query
+     *
+     * @param string $query
+     * @return Block
+     */
+    public function setQuery($query)
+    {
+        $this->query = $query;
+
+        return $this;
+    }
+
+    /**
+     * Get query
+     *
+     * @return string 
+     */
+    public function getQuery()
+    {
+        return $this->query;
+    }
+
+    /**
+     * Set items
+     *
+     * @param integer $items
+     * @return Block
+     */
+    public function setItems($items)
+    {
+        $this->items = $items;
+
+        return $this;
+    }
+
+    /**
+     * Get items
+     *
+     * @return integer 
+     */
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    /**
+     * Set items_order
+     *
+     * @param integer $itemsOrder
+     * @return Block
+     */
+    public function setItemsOrder($itemsOrder)
+    {
+        $this->items_order = $itemsOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get items_order
+     *
+     * @return integer 
+     */
+    public function getItemsOrder()
+    {
+        return $this->items_order;
+    }
+
+    /**
      * Set position
      *
      * @param integer $position
-     * @return Section
+     * @return Block
      */
     public function setPosition($position)
     {
@@ -216,102 +267,56 @@ class Section
     }
 
     /**
-     * Set url
+     * Set is_random
      *
-     * @param string $url
-     * @return Section
+     * @param boolean $isRandom
+     * @return Block
      */
-    public function setUrl($url)
+    public function setIsRandom($isRandom)
     {
-        $this->url = $url;
+        $this->is_random = $isRandom;
 
         return $this;
     }
 
     /**
-     * Get url
-     *
-     * @return string 
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
-     * Set keywords
-     *
-     * @param string $keywords
-     * @return Section
-     */
-    public function setKeywords($keywords)
-    {
-        $this->keywords = $keywords;
-
-        return $this;
-    }
-
-    /**
-     * Get keywords
-     *
-     * @return string 
-     */
-    public function getKeywords()
-    {
-        return $this->keywords;
-    }
-
-    /**
-     * Set contact_email
-     *
-     * @param string $contactEmail
-     * @return Section
-     */
-    public function setContactEmail($contactEmail)
-    {
-        $this->contact_email = $contactEmail;
-
-        return $this;
-    }
-
-    /**
-     * Get contact_email
-     *
-     * @return string 
-     */
-    public function getContactEmail()
-    {
-        return $this->contact_email;
-    }
-
-    /**
-     * Set is_homepage
-     *
-     * @param boolean $isHomepage
-     * @return Section
-     */
-    public function setIsHomepage($isHomepage)
-    {
-        $this->is_homepage = $isHomepage;
-
-        return $this;
-    }
-
-    /**
-     * Get is_homepage
+     * Get is_random
      *
      * @return boolean 
      */
-    public function getIsHomepage()
+    public function getIsRandom()
     {
-        return $this->is_homepage;
+        return $this->is_random;
+    }
+
+    /**
+     * Set is_automatic
+     *
+     * @param boolean $isAutomatic
+     * @return Block
+     */
+    public function setIsAutomatic($isAutomatic)
+    {
+        $this->is_automatic = $isAutomatic;
+
+        return $this;
+    }
+
+    /**
+     * Get is_automatic
+     *
+     * @return boolean 
+     */
+    public function getIsAutomatic()
+    {
+        return $this->is_automatic;
     }
 
     /**
      * Set is_active
      *
      * @param boolean $isActive
-     * @return Section
+     * @return Block
      */
     public function setIsActive($isActive)
     {
@@ -334,7 +339,7 @@ class Section
      * Set is_visible
      *
      * @param boolean $isVisible
-     * @return Section
+     * @return Block
      */
     public function setIsVisible($isVisible)
     {
@@ -357,7 +362,7 @@ class Section
      * Set date_start
      *
      * @param \DateTime $dateStart
-     * @return Section
+     * @return Block
      */
     public function setDateStart($dateStart)
     {
@@ -380,7 +385,7 @@ class Section
      * Set date_end
      *
      * @param \DateTime $dateEnd
-     * @return Section
+     * @return Block
      */
     public function setDateEnd($dateEnd)
     {
@@ -403,7 +408,7 @@ class Section
      * Set created_at
      *
      * @param \DateTime $createdAt
-     * @return Section
+     * @return Block
      */
     public function setCreatedAt($createdAt)
     {
@@ -426,7 +431,7 @@ class Section
      * Set updated_at
      *
      * @param \DateTime $updatedAt
-     * @return Section
+     * @return Block
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -446,153 +451,99 @@ class Section
     }
 
     /**
-     * Add assets
+     * Set section
      *
-     * @param \Cmais\ModelBundle\Entity\SectionAsset $assets
-     * @return Section
+     * @param \Cmais\ModelBundle\Entity\Section $section
+     * @return Block
      */
-    public function addAsset(\Cmais\ModelBundle\Entity\SectionAsset $assets)
+    public function setSection(\Cmais\ModelBundle\Entity\Section $section = null)
     {
-        $this->assets[] = $assets;
+        $this->section = $section;
 
         return $this;
     }
 
     /**
-     * Remove assets
-     *
-     * @param \Cmais\ModelBundle\Entity\SectionAsset $assets
-     */
-    public function removeAsset(\Cmais\ModelBundle\Entity\SectionAsset $assets)
-    {
-        $this->assets->removeElement($assets);
-    }
-
-    /**
-     * Get assets
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getAssets()
-    {
-        return $this->assets;
-    }
-
-    /**
-     * Add sections
-     *
-     * @param \Cmais\ModelBundle\Entity\Section $sections
-     * @return Section
-     */
-    public function addSection(\Cmais\ModelBundle\Entity\Section $sections)
-    {
-        $this->sections[] = $sections;
-
-        return $this;
-    }
-
-    /**
-     * Remove sections
-     *
-     * @param \Cmais\ModelBundle\Entity\Section $sections
-     */
-    public function removeSection(\Cmais\ModelBundle\Entity\Section $sections)
-    {
-        $this->sections->removeElement($sections);
-    }
-
-    /**
-     * Get sections
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getSections()
-    {
-        return $this->sections;
-    }
-
-    /**
-     * Set parent
-     *
-     * @param \Cmais\ModelBundle\Entity\Section $parent
-     * @return Section
-     */
-    public function setParent(\Cmais\ModelBundle\Entity\Section $parent = null)
-    {
-        $this->parent = $parent;
-
-        return $this;
-    }
-
-    /**
-     * Get parent
+     * Get section
      *
      * @return \Cmais\ModelBundle\Entity\Section 
      */
-    public function getParent()
+    public function getSection()
     {
-        return $this->parent;
-    }
-
-    /**
-     * Set site
-     *
-     * @param \Cmais\ModelBundle\Entity\Site $site
-     * @return Section
-     */
-    public function setSite(\Cmais\ModelBundle\Entity\Site $site = null)
-    {
-        $this->site = $site;
-
-        return $this;
-    }
-
-    /**
-     * Get site
-     *
-     * @return \Cmais\ModelBundle\Entity\Site 
-     */
-    public function getSite()
-    {
-        return $this->site;
+        return $this->section;
     }
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $blocks;
-
+    private $displays;
 
     /**
-     * Add blocks
-     *
-     * @param \Cmais\ModelBundle\Entity\Block $blocks
-     * @return Section
+     * Constructor
      */
-    public function addBlock(\Cmais\ModelBundle\Entity\Block $blocks)
+    public function __construct()
     {
-        $this->blocks[] = $blocks;
+        $this->displays = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add displays
+     *
+     * @param \Cmais\ModelBundle\Entity\Display $displays
+     * @return Block
+     */
+    public function addDisplay(\Cmais\ModelBundle\Entity\Display $displays)
+    {
+        $this->displays[] = $displays;
 
         return $this;
     }
 
     /**
-     * Remove blocks
+     * Remove displays
      *
-     * @param \Cmais\ModelBundle\Entity\Block $blocks
+     * @param \Cmais\ModelBundle\Entity\Display $displays
      */
-    public function removeBlock(\Cmais\ModelBundle\Entity\Block $blocks)
+    public function removeDisplay(\Cmais\ModelBundle\Entity\Display $displays)
     {
-        $this->blocks->removeElement($blocks);
+        $this->displays->removeElement($displays);
     }
 
     /**
-     * Get blocks
+     * Get displays
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getBlocks()
+    public function getDisplays()
     {
-        return $this->blocks;
+        return $this->displays;
+    }
+    /**
+     * @var \Cmais\ModelBundle\Entity\Asset
+     */
+    private $asset;
+
+
+    /**
+     * Set asset
+     *
+     * @param \Cmais\ModelBundle\Entity\Asset $asset
+     * @return Block
+     */
+    public function setAsset(\Cmais\ModelBundle\Entity\Asset $asset = null)
+    {
+        $this->asset = $asset;
+
+        return $this;
+    }
+
+    /**
+     * Get asset
+     *
+     * @return \Cmais\ModelBundle\Entity\Asset 
+     */
+    public function getAsset()
+    {
+        return $this->asset;
     }
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -604,7 +555,7 @@ class Section
      * Add logs
      *
      * @param \Cmais\ModelBundle\Entity\Log $logs
-     * @return Section
+     * @return Block
      */
     public function addLog(\Cmais\ModelBundle\Entity\Log $logs)
     {

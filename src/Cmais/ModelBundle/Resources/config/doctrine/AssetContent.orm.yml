@@ -1,0 +1,40 @@
+Cmais\ModelBundle\Entity\AssetContent:
+    type: entity
+    table: asset_content
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    oneToOne:
+        asset:
+            targetEntity: Asset
+            inversedBy: asset_content
+            joinColumn:
+                name: asset_id
+                referencedColumnName: id
+
+    fields:
+        headline:
+            type: string
+            length: 255
+            nullable: true
+        short_headline:
+            type: string
+            length: 255
+            nullable: true
+        long_headline:
+            type: string
+            length: 255
+            nullable: true
+        content:
+            type: blob
+            nullable: true
+        source:
+            type: string
+            length: 255
+            nullable: true
+        author:
+            type: string
+            length: 255
+            nullable: true

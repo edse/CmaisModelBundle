@@ -1,0 +1,59 @@
+Cmais\ModelBundle\Entity\Log:
+    type: entity
+    table: log
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: logs
+        site:
+            targetEntity: Site
+            inversedBy: logs
+        section:
+            targetEntity: Section
+            inversedBy: logs
+        block:
+            targetEntity: Block
+            inversedBy: logs
+        display:
+            targetEntity: Display
+            inversedBy: logs
+        asset:
+            targetEntity: Asset
+            inversedBy: logs
+
+    fields:
+        title:
+            type: string
+            length: 255
+            nullable: false
+        action:
+            type: string
+            length: 255
+            nullable: true
+        class:
+            type: string
+            length: 255
+            nullable: true
+        ip:
+            type: string
+            length: 255
+            nullable: true
+        status:
+            type: string
+            length: 255
+            nullable: true
+        created_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: create
+        updated_at:
+            type: datetime
+            gedmo:
+                timestampable:
+                    on: update

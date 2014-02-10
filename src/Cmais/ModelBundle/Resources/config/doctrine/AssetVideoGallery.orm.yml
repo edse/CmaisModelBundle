@@ -1,0 +1,70 @@
+Cmais\ModelBundle\Entity\AssetVideoGallery:
+    type: entity
+    table: asset_video_gallery
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    oneToOne:
+        asset:
+            targetEntity: Asset
+            inversedBy: asset_video_gallery
+            joinColumn: 
+                name: asset_id
+                referencedColumnName: id
+    oneToMany:
+        video_dropboxes:
+            targetEntity: VideoDropbox
+            mappedBy: asset_video_gallery
+
+    fields:
+        headline:
+            type: string
+            length: 255
+            nullable: true
+        long_headline:
+            type: string
+            length: 255
+            nullable: true
+        html:
+            type: blob
+            nullable: true
+        transcription:
+            type: blob
+            nullable: true
+        number:
+            type: string
+            length: 255
+            nullable: true
+        directors:
+            type: string
+            length: 255
+            nullable: true
+        actors:
+            type: string
+            length: 255
+            nullable: true
+        producers:
+            type: string
+            length: 255
+            nullable: true
+        writters:
+            type: string
+            length: 255
+            nullable: true
+        date_release:
+            type: datetime
+            nullable: true
+        url:
+            type: string
+            length: 255
+            nullable: true
+        source:
+            type: string
+            length: 255
+            nullable: true
+        author:
+            type: string
+            length: 255
+            nullable: true

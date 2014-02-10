@@ -1054,32 +1054,4 @@ class Asset
     {
         return $this->logs;
     }
-    /**
-     * @var \Cmais\ModelBundle\Entity\AssetSchedule
-     */
-    private $asset_schedule;
-
-
-    /**
-     * Set asset_schedule
-     *
-     * @param \Cmais\ModelBundle\Entity\AssetSchedule $assetSchedule
-     * @return Asset
-     */
-    public function setAssetSchedule(\Cmais\ModelBundle\Entity\AssetSchedule $assetSchedule = null)
-    {
-        $this->asset_schedule = $assetSchedule;
-
-        return $this;
-    }
-
-    /**
-     * Get asset_schedule
-     *
-     * @return \Cmais\ModelBundle\Entity\AssetSchedule 
-     */
-    public function getAssetSchedule()
-    {
-        return $this->asset_schedule;
-    }
 }

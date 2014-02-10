@@ -1,117 +1,83 @@
-Cmais\ModelBundle\Entity\Site:
+Cmais\ModelBundle\Entity\AssetVideo:
     type: entity
-    table: site
+    table: asset_video
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
 
-    manyToOne:
-        site_type:
-            targetEntity: SiteType
-            inversedBy: sites
-    oneToMany:
-        sections:
-            targetEntity: Section
-            mappedBy: site
-        assets:
+    oneToOne:
+        asset:
             targetEntity: Asset
-            mappedBy: site
-        users:
-            targetEntity: SiteUser
-            mappedBy: site
-        logs:
-            targetEntity: Log
-            mappedBy: site
-        parent_sites:
-            targetEntity: RelatedSite
-            mappedBy: parent_site
-        related_sites:
-            targetEntity: RelatedSite
-            mappedBy: site
-
-        channel_schedules:
-            targetEntity: AssetSchedule
-            mappedBy: channel
-        program_schedules:
-            targetEntity: AssetSchedule
-            mappedBy: program
+            inversedBy: asset_video
+            joinColumn:
+                name: asset_id
+                referencedColumnName: id
+    oneToMany:
+        video_dropboxes:
+            targetEntity: VideoDropbox
+            mappedBy: asset_video
 
     fields:
-        slug:
-            type: string
-            length: 255
-            gedmo:
-                slug:
-                separator: -
-                fields:
-                    - title
-        title:
-            type: string
-            length: 255
-            nullable: false
-        description:
-            type: string
-            length: 510
-            nullable: true
-        url:
+        youtube_id:
             type: string
             length: 255
             nullable: true
-        keywords:
+        youtube_thumb:
             type: string
             length: 255
             nullable: true
-        youtube_channel:
+        file:
             type: string
             length: 255
             nullable: true
-        youtube_genre:
+        original_file:
             type: string
             length: 255
             nullable: true
-        twitter_account:
+        original_file_size:
             type: string
             length: 255
             nullable: true
-        twitter_url:
+        framerate:
             type: string
             length: 255
             nullable: true
-        facebook_account:
+        bitrate:
             type: string
             length: 255
             nullable: true
-        facebook_url:
+        duration:
             type: string
             length: 255
             nullable: true
-        googleplus_account:
+        width:
             type: string
             length: 255
             nullable: true
-        googleplus_url:
+        height:
             type: string
             length: 255
             nullable: true
-        image_icon:
+        extension:
             type: string
             length: 255
             nullable: true
-        image_thumb:
+        headline:
             type: string
             length: 255
             nullable: true
-        image_live:
+        genre:
             type: string
             length: 255
             nullable: true
-        contact_email:
+        source:
             type: string
             length: 255
             nullable: true
-        display_order:
-            type: integer
+        author:
+            type: string
+            length: 255
             nullable: true
         is_active:
             type: boolean
@@ -123,12 +89,6 @@ Cmais\ModelBundle\Entity\Site:
             nullable: true
             options:
                 default: 0
-        date_start:
-            type: datetime
-            nullable: true
-        date_end:
-            type: datetime
-            nullable: true
         created_at:
             type: datetime
             gedmo:
@@ -140,8 +100,6 @@ Cmais\ModelBundle\Entity\Site:
                 timestampable:
                     on: update
     indexes:
-        slug_index:
-            columns: [ slug ]
         is_active_index:
             columns: [ is_active ]
         is_visible_index:

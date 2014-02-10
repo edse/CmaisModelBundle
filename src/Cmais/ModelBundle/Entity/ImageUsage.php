@@ -5,9 +5,9 @@ namespace Cmais\ModelBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * AssetType
+ * ImageUsage
  */
-class AssetType
+class ImageUsage
 {
     /**
      * @var integer
@@ -32,22 +32,27 @@ class AssetType
     /**
      * @var string
      */
-    private $model;
+    private $width;
+
+    /**
+     * @var string
+     */
+    private $height;
+
+    /**
+     * @var string
+     */
+    private $background;
+
+    /**
+     * @var string
+     */
+    private $background_color;
 
     /**
      * @var boolean
      */
     private $is_active;
-
-    /**
-     * @var boolean
-     */
-    private $is_visible;
-
-    /**
-     * @var boolean
-     */
-    private $is_uploadable;
 
     /**
      * @var \DateTime
@@ -59,18 +64,6 @@ class AssetType
      */
     private $updated_at;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $assets;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->assets = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -86,7 +79,7 @@ class AssetType
      * Set slug
      *
      * @param string $slug
-     * @return AssetType
+     * @return ImageUsage
      */
     public function setSlug($slug)
     {
@@ -109,7 +102,7 @@ class AssetType
      * Set title
      *
      * @param string $title
-     * @return AssetType
+     * @return ImageUsage
      */
     public function setTitle($title)
     {
@@ -132,7 +125,7 @@ class AssetType
      * Set description
      *
      * @param string $description
-     * @return AssetType
+     * @return ImageUsage
      */
     public function setDescription($description)
     {
@@ -152,33 +145,102 @@ class AssetType
     }
 
     /**
-     * Set model
+     * Set width
      *
-     * @param string $model
-     * @return AssetType
+     * @param string $width
+     * @return ImageUsage
      */
-    public function setModel($model)
+    public function setWidth($width)
     {
-        $this->model = $model;
+        $this->width = $width;
 
         return $this;
     }
 
     /**
-     * Get model
+     * Get width
      *
      * @return string 
      */
-    public function getModel()
+    public function getWidth()
     {
-        return $this->model;
+        return $this->width;
+    }
+
+    /**
+     * Set height
+     *
+     * @param string $height
+     * @return ImageUsage
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * Get height
+     *
+     * @return string 
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * Set background
+     *
+     * @param string $background
+     * @return ImageUsage
+     */
+    public function setBackground($background)
+    {
+        $this->background = $background;
+
+        return $this;
+    }
+
+    /**
+     * Get background
+     *
+     * @return string 
+     */
+    public function getBackground()
+    {
+        return $this->background;
+    }
+
+    /**
+     * Set background_color
+     *
+     * @param string $backgroundColor
+     * @return ImageUsage
+     */
+    public function setBackgroundColor($backgroundColor)
+    {
+        $this->background_color = $backgroundColor;
+
+        return $this;
+    }
+
+    /**
+     * Get background_color
+     *
+     * @return string 
+     */
+    public function getBackgroundColor()
+    {
+        return $this->background_color;
     }
 
     /**
      * Set is_active
      *
      * @param boolean $isActive
-     * @return AssetType
+     * @return ImageUsage
      */
     public function setIsActive($isActive)
     {
@@ -198,56 +260,10 @@ class AssetType
     }
 
     /**
-     * Set is_visible
-     *
-     * @param boolean $isVisible
-     * @return AssetType
-     */
-    public function setIsVisible($isVisible)
-    {
-        $this->is_visible = $isVisible;
-
-        return $this;
-    }
-
-    /**
-     * Get is_visible
-     *
-     * @return boolean 
-     */
-    public function getIsVisible()
-    {
-        return $this->is_visible;
-    }
-
-    /**
-     * Set is_uploadable
-     *
-     * @param boolean $isUploadable
-     * @return AssetType
-     */
-    public function setIsUploadable($isUploadable)
-    {
-        $this->is_uploadable = $isUploadable;
-
-        return $this;
-    }
-
-    /**
-     * Get is_uploadable
-     *
-     * @return boolean 
-     */
-    public function getIsUploadable()
-    {
-        return $this->is_uploadable;
-    }
-
-    /**
      * Set created_at
      *
      * @param \DateTime $createdAt
-     * @return AssetType
+     * @return ImageUsage
      */
     public function setCreatedAt($createdAt)
     {
@@ -270,7 +286,7 @@ class AssetType
      * Set updated_at
      *
      * @param \DateTime $updatedAt
-     * @return AssetType
+     * @return ImageUsage
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -287,66 +303,5 @@ class AssetType
     public function getUpdatedAt()
     {
         return $this->updated_at;
-    }
-
-    /**
-     * Add assets
-     *
-     * @param \Cmais\ModelBundle\Entity\Asset $assets
-     * @return AssetType
-     */
-    public function addAsset(\Cmais\ModelBundle\Entity\Asset $assets)
-    {
-        $this->assets[] = $assets;
-
-        return $this;
-    }
-
-    /**
-     * Remove assets
-     *
-     * @param \Cmais\ModelBundle\Entity\Asset $assets
-     */
-    public function removeAsset(\Cmais\ModelBundle\Entity\Asset $assets)
-    {
-        $this->assets->removeElement($assets);
-    }
-
-    /**
-     * Get assets
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getAssets()
-    {
-        return $this->assets;
-    }
-    /**
-     * @var integer
-     */
-    private $position;
-
-
-    /**
-     * Set position
-     *
-     * @param integer $position
-     * @return AssetType
-     */
-    public function setPosition($position)
-    {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    /**
-     * Get position
-     *
-     * @return integer 
-     */
-    public function getPosition()
-    {
-        return $this->position;
     }
 }

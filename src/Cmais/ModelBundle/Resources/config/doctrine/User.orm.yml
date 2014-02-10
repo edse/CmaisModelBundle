@@ -6,3 +6,14 @@ Cmais\ModelBundle\Entity\User:
             type: integer
             generator:
                 strategy: AUTO
+
+    oneToMany:
+        sites:
+            targetEntity: SiteUser
+            mappedBy: user
+        assets:
+            targetEntity: Asset
+            mappedBy: user
+        logs:
+            targetEntity: Log
+            mappedBy: user

@@ -1,0 +1,40 @@
+Cmais\ModelBundle\Entity\AssetQuestion:
+    type: entity
+    table: asset_question
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    oneToOne:
+        asset:
+            targetEntity: Asset
+            inversedBy: asset_question
+            joinColumn: 
+                name: asset_id
+                referencedColumnName: id
+    oneToMany:
+        asset_answers:
+            targetEntity: AssetAnswer
+            mappedBy: asset_question
+
+    fields:
+        question:
+            type: string
+            length: 255
+            nullable: true
+        headline:
+            type: string
+            length: 255
+            nullable: true
+        html:
+            type: blob
+            nullable: true
+        source:
+            type: string
+            length: 255
+            nullable: true
+        author:
+            type: string
+            length: 255
+            nullable: true

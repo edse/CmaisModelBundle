@@ -1,0 +1,15 @@
+Cmais\ModelBundle\Entity\SiteUser:
+    type: entity
+    table: site_user
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    manyToOne:
+        site:
+            targetEntity: Site
+            inversedBy: users
+        user:
+            targetEntity: User
+            inversedBy: sites

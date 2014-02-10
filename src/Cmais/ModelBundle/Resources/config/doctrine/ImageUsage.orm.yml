@@ -1,15 +1,10 @@
-Cmais\ModelBundle\Entity\Category:
+Cmais\ModelBundle\Entity\ImageUsage:
     type: entity
-    table: category
+    table: image_usage
     id:
         id:
             type: integer
             generator: { strategy: AUTO }
-
-    oneToMany:
-        assets:
-            targetEntity: CategoryAsset
-            mappedBy: category
 
     fields:
         slug:
@@ -23,11 +18,26 @@ Cmais\ModelBundle\Entity\Category:
         title:
             type: string
             length: 255
-            unique: true
             nullable: false
         description:
             type: string
             length: 510
+            nullable: true
+        width:
+            type: string
+            length: 255
+            nullable: true
+        height:
+            type: string
+            length: 255
+            nullable: true
+        background:
+            type: string
+            length: 255
+            nullable: true
+        background_color:
+            type: string
+            length: 255
             nullable: true
         is_active:
             type: boolean
@@ -44,10 +54,8 @@ Cmais\ModelBundle\Entity\Category:
             gedmo:
                 timestampable:
                     on: update
-
     indexes:
         slug_index:
             columns: [ slug ]
         is_active_index:
             columns: [ is_active ]
-

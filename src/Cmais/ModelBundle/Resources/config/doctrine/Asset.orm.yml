@@ -6,6 +6,44 @@ Cmais\ModelBundle\Entity\Asset:
             type: integer
             generator: { strategy: AUTO }
 
+    oneToOne:
+        asset_content:
+            targetEntity: AssetContent
+            mappedBy: asset
+        asset_image:
+            targetEntity: AssetImage
+            mappedBy: asset
+        asset_video:
+            targetEntity: AssetVideo
+            mappedBy: asset
+        asset_audio:
+            targetEntity: AssetAudio
+            mappedBy: asset
+        asset_file:
+            targetEntity: AssetFile
+            mappedBy: asset
+        asset_image_gallery:
+            targetEntity: AssetImageGallery
+            mappedBy: asset
+        asset_audio_gallery:
+            targetEntity: AssetAudioGallery
+            mappedBy: asset
+        asset_video_gallery:
+            targetEntity: AssetVideoGallery
+            mappedBy: asset
+        asset_question:
+            targetEntity: AssetQuestion
+            mappedBy: asset
+        asset_answer:
+            targetEntity: AssetAnswer
+            mappedBy: asset
+        asset_person:
+            targetEntity: AssetPerson
+            mappedBy: asset
+        asset_schedule:
+            targetEntity: AssetSchedule
+            mappedBy: asset
+
     oneToMany:
         categories:
             targetEntity: CategoryAsset
@@ -13,34 +51,18 @@ Cmais\ModelBundle\Entity\Asset:
         sections:
             targetEntity: SectionAsset
             mappedBy: asset
-
-#        sections:
-#            targetEntity: Section
-#            mappedBy: assets
-
-#    manyToMany:
-#        categories:
-#            targetEntity: Category
-#            inversedBy: assets
-#            joinTable:
-#                name: category_asset
-#                joinColumns:
-#                    asset_id:
-#                        referencedColumnName: id
-#                inverseJoinColumns:
-#                    category_id:
-#                        referencedColumnName: id
-#        sections:
-#            targetEntity: Section
-#            inversedBy: assets
-#            joinTable:
-#                name: section_asset
-#                joinColumns:
-#                    asset_id:
-#                        referencedColumnName: id
-#                inverseJoinColumns:
-#                    category_id:
-#                        referencedColumnName: id
+        displays:
+            targetEntity: Display
+            mappedBy: asset
+        parent_assets:
+            targetEntity: RelatedAsset
+            mappedBy: parent_asset
+        related_assets:
+            targetEntity: RelatedAsset
+            mappedBy: asset
+        logs:
+            targetEntity: Log
+            mappedBy: asset
 
     manyToOne:
         asset_type:
@@ -63,28 +85,12 @@ Cmais\ModelBundle\Entity\Asset:
                 referencedColumnName: id
         user:
             targetEntity: User
-            #inversedBy: assets
+            inversedBy: assets
             joinColumn:
                 name: user_id
                 referencedColumnName: id
 
     fields:
-#        asset_type_id:
-#            type: integer
-#            nullable: false
-
-#        site_id:
-#            type: integer
-#            nullable: false
-
-#        user_id:
-#            type: integer
-#            nullable: false
-
-#        category_id:
-#            type: integer
-#            nullable: true
-
         slug:
             type: string
             length: 255
@@ -101,9 +107,17 @@ Cmais\ModelBundle\Entity\Asset:
             type: string
             length: 510
             nullable: true
-        display_order:
-            type: integer
+        contact_email:
+            type: string
+            length: 255
             nullable: true
+        position:
+            type: integer
+            gedmo:
+                - sortablePosition
+            nullable: true
+            options:
+                default: 0
         is_active:
             type: boolean
             nullable: true
@@ -137,5 +151,3 @@ Cmais\ModelBundle\Entity\Asset:
             columns: [ is_active ]
         is_visible_index:
             columns: [ is_visible ]
-
-

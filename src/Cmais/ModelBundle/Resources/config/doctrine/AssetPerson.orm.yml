@@ -1,0 +1,58 @@
+Cmais\ModelBundle\Entity\AssetPerson:
+    type: entity
+    table: asset_person
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    oneToOne:
+        asset:
+            targetEntity: Asset
+            inversedBy: asset_person
+            joinColumn: 
+                name: asset_id
+                referencedColumnName: id
+
+    fields:
+        name:
+            type: string
+            length: 255
+            nullable: false
+        headline:
+            type: string
+            length: 255
+            nullable: true
+        dob:
+            type: date
+        html:
+            type: blob
+            nullable: true
+        website_url:
+            type: string
+            length: 255
+            nullable: true
+        facebook_url:
+            type: string
+            length: 255
+            nullable: true
+        twitter_url:
+            type: string
+            length: 255
+            nullable: true
+        youtube_url:
+            type: string
+            length: 255
+            nullable: true
+        googleplus_url:
+            type: string
+            length: 255
+            nullable: true
+        source:
+            type: string
+            length: 255
+            nullable: true
+        author:
+            type: string
+            length: 255
+            nullable: true
